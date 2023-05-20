@@ -1,5 +1,5 @@
 import styles from './NotFound.module.scss';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const NotFoundPage = (props: any) => {
     return (
@@ -7,7 +7,7 @@ const NotFoundPage = (props: any) => {
             <div></div>
             <h3>Какой-то сверхразум все сломал</h3>
             <p>Постараемся быстро починить</p>
-            <a href="">Попробуем снова</a>
+            <NavLink to='/'>Попробуем снова</NavLink>
         </div>
     )
 }

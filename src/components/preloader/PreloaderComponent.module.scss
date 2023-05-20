@@ -1,0 +1,36 @@
+.preloader{
+
+    .loader{
+        margin: 0 4%;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+
+        .person{
+            height: 80px;
+            width: 20%;
+            background-image: url(../../assets/preload.svg);
+            animation: movement 2s infinite alternate ease-in-out;
+        }
+
+        .person:not(:first-child) {
+            margin: 10px 0;
+        }
+
+    }
+}
+
+@keyframes movement{
+    0%{
+      opacity: 1;
+    }
+
+    50%{
+        opacity: 0.5;
+      }
+
+    100%{
+        opacity: 1;
+    }
+  }
+
