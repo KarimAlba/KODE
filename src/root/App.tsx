@@ -7,7 +7,8 @@ import MainPage from '../components/mainPage/MainPageComponent';
 import NotFoundPage from '../components/notFoundPage/NotFoundPage';
 import Preloader from '../components/preloader/PreloaderComponent';
 import { Routes, Route, NavLink } from 'react-router-dom';
-import { resolve } from 'node:path/posix';
+import { send } from 'process';
+import Modal from '../components/modalWindow/ModalWindowComponent';
 
 const App = () =>{
   const [stateOfPreloader, setStateOfPreloader] = useState(true);
@@ -19,13 +20,20 @@ const App = () =>{
   }, []);
 
   const [workers, setWorkers] = useState([]);
-  const sendReq = () => {
-    axios.get('https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=all')
-    .then((response) => {
-      const people = response.data.items;
-      setWorkers(people);
-    });
+  
+  const sendReq = async () => {
+    const responce = await axios.get('https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=all');
+    const employee = await responce.data.items;
+    return employee;
   }
+
+  useEffect(() => {
+    sendReq();
+  }, 
+  [])
+
+  const [stateOfModal, setStateOfModal] = useState(false);
+  const getStateOfModal = () => {setStateOfModal(!stateOfModal)}
 
   const routes =
     <Routes>
@@ -35,9 +43,10 @@ const App = () =>{
 
   return (
     <div className="App">
-      <TopAppBar/>
+      <TopAppBar getStateOfModal={getStateOfModal}/>
       <NavBar/>
-      {stateOfPreloader? <Preloader /> : routes}
+      {stateOfModal? <Modal getStateOfModal={getStateOfModal} />: null}
+      {/* {stateOfPreloader? <Preloader /> : routes} */}
     </div>
   );
 }
