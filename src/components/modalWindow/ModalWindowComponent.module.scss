@@ -1,0 +1,56 @@
+.background{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 99.9%;
+    height: 99.9%;
+    background: rgba(5, 5, 16, 0.16);
+}
+
+.modal{
+    margin: 15% auto;
+    //padding: 7px 10px;
+    width: 25%;
+    height: 180px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 20px;
+
+    .modal_header{
+        display: flex;
+        justify-content: space-between;
+
+        h3{
+            margin-left:30%;
+        }
+
+        button{
+            margin: auto 10px;
+            width: 25px;
+            height: 25px;
+            color: #C3C3C6;
+            background: #F7F7F8;
+            border-radius: 12px;
+            border: none;
+            font-size: 17px;
+        }
+
+        button:hover,
+        button:active{
+            border: 1px solid #7d8c98;
+        }
+    }
+}
+
+.checkbox{
+    margin: 0px 0 20px 10px;
+    display: flex;
+    text-align: left;
+
+    input{
+        //margin: auto;
+    }
+}
