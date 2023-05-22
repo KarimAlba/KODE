@@ -10,7 +10,7 @@
             height: 80px;
             width: 20%;
             background-image: url(../../assets/preload.svg);
-            animation: movement 2s infinite alternate ease-in-out;
+            animation: movement 1s infinite alternate ease-in-out;
         }
 
         .person:not(:first-child) {
