@@ -90,9 +90,13 @@ nav{
     }
 
     a:active,
-    a:focus,
-    a:hover{
+    a:focus{
         color: #050510;
+        border-bottom: 2px solid #6534FF;
+        font-weight: 600;
+    }
+
+    a:hover{
         border-bottom: 2px solid #6534FF;
         font-weight: 600;
     }

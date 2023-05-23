@@ -1,5 +1,5 @@
 .background{
-    position: absolute;
+    position: fixed;
     top:0;
     left:0;
     width: 99.9%;
@@ -9,7 +9,6 @@
 
 .modal{
     margin: 15% auto;
-    //padding: 7px 10px;
     width: 25%;
     height: 180px;
     display: flex;
@@ -20,6 +19,7 @@
     border-radius: 20px;
 
     .modal_header{
+        margin-top: 15px;
         display: flex;
         justify-content: space-between;
 
@@ -45,12 +45,42 @@
     }
 }
 
-.checkbox{
-    margin: 0px 0 20px 10px;
+.form_radio:first-of-type {
     display: flex;
-    text-align: left;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
 
-    input{
-        //margin: auto;
+.form_radio{
+    width: 90%;
+    margin: auto;
+
+    div{
+        width: 100%;
+
+        label {
+            margin-right: 15px;
+            line-height: 32px;
+        }
+        
+        input {
+        margin-right: 5px;
+        position: relative;
+        top: 4px;
+        width: 16px;
+        height: 16px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 50%;
+        border: 2px solid #6534FF;
+        transition: 0.2s all linear;
+        outline: none;
+        cursor: pointer;
+        }
+        
+        input:checked {
+        border: 5.5px solid #6534FF;
+        }
     }
 }

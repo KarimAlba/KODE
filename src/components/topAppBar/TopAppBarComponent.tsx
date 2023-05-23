@@ -1,10 +1,16 @@
-import styles from './TopAppBar.module.scss';
-import React, { useState } from 'react';
+interface TopAppBarProps{
+    getStateOfModal: any;
+    getPhrase: any;
+}
 
-const TopAppBar = (props: any) => {
-
+const TopAppBar = (props: TopAppBarProps) => {
     const handleBtnClick = () => {
-        props.getStateOfModal()
+        props.getStateOfModal();
+    }
+
+    const handleSearch = (e: any) => {
+        const phrase: string = e.target.value;
+        props.getPhrase(phrase);
     }
 
     return (
@@ -15,6 +21,7 @@ const TopAppBar = (props: any) => {
                     type="text" 
                     placeholder="Введи имя, тег, почту..."
                     className="search-inp"
+                    onInput={handleSearch}
                 />
                 <button className="filtration-btn" onClick={handleBtnClick}></button>
             </div>

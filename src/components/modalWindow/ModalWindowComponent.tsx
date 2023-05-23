@@ -1,8 +1,20 @@
 import styles from './ModalWindowComponent.module.scss';
 
-const Modal = (props: any) => {
+interface ModalPropsTypes {
+    birthdaySorting: boolean;
+    getStateOfModal: any;
+    getStateOfSorting: any;
+}
+
+const Modal = (props: ModalPropsTypes) => {
+    const { birthdaySorting } = props;
+
     const handleBtnClick = () => {
         props.getStateOfModal()
+    }
+
+    const handleInputClick = () => {
+        props.getStateOfSorting();
     }
 
     return(
@@ -12,13 +24,37 @@ const Modal = (props: any) => {
                     <h3>Сортировка</h3>
                     <button onClick={handleBtnClick}>x</button>
                 </div>
-                <div className={styles.checkbox}>
-                    <input type="checkbox" value='По алфавиту' name='alphabet'/>
-                    <label htmlFor="alphabet">По алфавиту</label>
-                </div>
-                <div className={styles.checkbox}>
-                    <input type="checkbox" value='По дню рождения' name='birthday' />
-                    <label htmlFor="birthday">По дню рождения</label>
+
+                <div className={styles["form_radio"]}>
+                    <div>
+                        {birthdaySorting?                     
+                            <input 
+                                type="radio" id="alphabet"
+                                name="sorting" onClick={handleInputClick} 
+                            />: 
+                            <input 
+                                type="radio" id="alphabet"
+                                name="sorting" onClick={handleInputClick}
+                                defaultChecked 
+                            />
+                        }
+                        <label htmlFor="alphabet">По алфавиту</label>
+                    </div>
+                    <div>
+                        {birthdaySorting?                     
+                            <input 
+                                type="radio" id="birthday"
+                                name="sorting" onClick={handleInputClick}
+                                defaultChecked 
+                            />: 
+                            <input 
+                                type="radio" id="birthday"
+                                name="sorting" onClick={handleInputClick}
+                            />
+                        }
+
+                        <label htmlFor="birthday">По дню рождения</label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -26,3 +62,4 @@ const Modal = (props: any) => {
 }
 
 export default Modal;
+
