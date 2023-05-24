@@ -1,6 +1,5 @@
 import IWorker from '../../models/IWorker';
-import { Link, useMatch } from 'react-router-dom';
-import { useEffect } from 'react';  
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 interface CutomLinkPropsTypes{
@@ -9,11 +8,12 @@ interface CutomLinkPropsTypes{
     children: string;
     filterByDepartament: any;
     departament: string;
+    isActive?: boolean;
+    changeActive?: any;
 }
 
 const CustomLink = (props: CutomLinkPropsTypes) => {
-    const { workers, children, to, departament } = props;
-    const match = useMatch(to);
+    const { children, to, departament, isActive, changeActive } = props;
 
     const sortArray = (x: IWorker, y: IWorker) =>{
         if (x.firstName < y.firstName) {return -1;}
@@ -32,12 +32,15 @@ const CustomLink = (props: CutomLinkPropsTypes) => {
 
     const handleClick = () => {
         sendReq();
+        if (isActive) {
+            return
+        } changeActive();
     }
 
     return(
         <Link 
-            to={to}
-            onClick={handleClick}
+            to={to} onClick={handleClick}
+            className={isActive? 'active': 'inactive'}
         >
             {children}
         </Link>

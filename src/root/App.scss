@@ -69,6 +69,19 @@ button{
     }
 }
 
+.active{
+    color: #050510;
+    border-bottom: 2px solid #6534FF;
+    font-weight: 600;
+}
+
+.inactive{
+    color: #97979B;
+    text-decoration: none;
+    font-weight: 300;
+    border: none;
+}
+
 nav{
     margin:25px 0;
     padding: 0 40% 0 3%;

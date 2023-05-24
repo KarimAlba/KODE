@@ -7,7 +7,8 @@ interface MainPagePropsType {
 }
 
 const MainPage = (props: MainPagePropsType) => {
-    const {workers} = props;
+    const { workers } = props;
+
     return (
         <div className={styles['workers']}>
            { workers.map(worker => 

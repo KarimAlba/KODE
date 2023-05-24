@@ -48,10 +48,10 @@ const App = () =>{
   const getStateOfSorting = () => {
     setBirthdaySorting(!birthdaySorting);
     birthdaySorting ? 
+      setWorkers(workers.sort(sortArray)):
       setWorkers(workers.sort(
         (a: IWorker, b: IWorker) => Number(new Date(b.birthday)) - Number(new Date(a.birthday))
-      )):
-      setWorkers(workers.sort(sortArray))
+      ))
   }
 
   const routes =
@@ -69,16 +69,28 @@ const App = () =>{
   }
 
   const prepareArray = (phrase: string) => {
-    setWorkers(workers.filter(worker => checkArr(worker, phrase)))
+    if (!phrase) {
+      sendReq();
+    } setWorkers(workers.filter(worker => checkArr(worker, phrase)))
+
   }
 
-    const getPhrase = (phrase: string) => {prepareArray(phrase)}; 
+  const getPhrase = (phrase: string) => {prepareArray(phrase)}; 
 
   return (
     <div className="App">
       <TopAppBar getStateOfModal={getStateOfModal} getPhrase={getPhrase}/>
-      <NavBar workers={workers} filterByDepartament={filterByDepartament}/>
-      {stateOfModal? <Modal getStateOfModal={getStateOfModal} getStateOfSorting={getStateOfSorting} birthdaySorting={birthdaySorting}/>: null}
+      <NavBar 
+        workers={workers} filterByDepartament={filterByDepartament}
+      />
+      {
+        stateOfModal? 
+          <Modal 
+            getStateOfModal={getStateOfModal} getStateOfSorting={getStateOfSorting} 
+            birthdaySorting={birthdaySorting}
+          />: 
+          null
+      }
       {stateOfPreloader? <Preloader /> : routes}
     </div>
   );
