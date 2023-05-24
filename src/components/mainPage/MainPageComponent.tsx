@@ -1,6 +1,7 @@
 import Worker from "../../models/IWorker"
 import styles from './MainPageComponent.module.scss'
-import Face from '../../assets/durovpashka.jpg'
+import Durov from '../../assets/durovpashka.jpg'
+import Bezos from '../../assets/bezos.jpg'
 
 interface MainPagePropsType {
     workers: Worker[] | [];
@@ -16,7 +17,7 @@ const MainPage = (props: MainPagePropsType) => {
                     <div key={worker.id + worker.avatarUrl} className={styles['workers_worker']}>
                         <img 
                             key={worker.id + worker.department} 
-                            src={Face} 
+                            src={Math.random() > 0.5? Bezos : Durov} 
                             alt="face of worker" 
                         />
                         <div key={worker.id + worker.lastName} className={styles['worker_container']}>
