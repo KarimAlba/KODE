@@ -1,9 +1,9 @@
 # KODE training task
 ### Technologies: 
-React - (https://reactjs.org/)
-TypeScript - (https://www.typescriptlang.org/)
-Webpack - (https://webpack.js.org/)
-Axios - (https://axios-http.com/)
-Sass/Scss - (https://sass-lang.com/)
+React - (https://reactjs.org/)<br/>
+TypeScript - (https://www.typescriptlang.org/)<br/>
+Webpack - (https://webpack.js.org/)<br/>
+Axios - (https://axios-http.com/)<br/>
+Sass/Scss - (https://sass-lang.com/)<br/>
 React Router - (https://reactrouter.com/en/main)
 
