@@ -27,8 +27,8 @@ const App = () =>{
 
   const [workers, setWorkers] = useState<IWorker[] | []>([]);
   
-  const sendReq = () => {
-    let apiUrl = 'https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=all';
+  const sendReq = (param?: string) => {
+    let apiUrl = `https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=${param ? param : 'all'}`;
     axios.get(apiUrl).then((resp) => {
         let employee = resp.data.items;
         employee.sort(sortArray);
@@ -60,28 +60,46 @@ const App = () =>{
       <Route path='*' element={<NotFoundPage/>} />
     </Routes>
 
-    const filterByDepartament = (arr: IWorker[]) => {setWorkers(arr)};
+  const filterByDepartament = (arr: IWorker[]) => {setWorkers(arr)};
 
-    const checkArr = (person: IWorker, phrase: string) => {
+  const checkArr = (person: IWorker, phrase: string) => {
       return person.firstName.includes(phrase)
       || person.lastName.includes(phrase)
       || person.phone.includes(phrase)
   }
 
+  const [departForRender, setDepartForRender] = useState<string>('all');
+
+  const getDepart = (departament: string) => {setDepartForRender(departament)}
+
   const prepareArray = (phrase: string) => {
     if (!phrase) {
-      sendReq();
+      sendReq(departForRender);
     } setWorkers(workers.filter(worker => checkArr(worker, phrase)))
-
   }
 
-  const getPhrase = (phrase: string) => {prepareArray(phrase)}; 
+  const getPhrase = (phrase: string) => {
+    prepareArray(phrase);
+  };
+  
+  const [inputValue, setInputValue] = useState<string>('');
+
+  useEffect(() => {
+    if(inputValue) {
+      setInputValue('');
+    } return
+  }, 
+  [departForRender]);
 
   return (
     <div className="App">
-      <TopAppBar getStateOfModal={getStateOfModal} getPhrase={getPhrase}/>
+      <TopAppBar 
+        getStateOfModal={getStateOfModal} 
+        getPhrase={getPhrase} inputValue={inputValue}
+      />
       <NavBar 
         workers={workers} filterByDepartament={filterByDepartament}
+        getDepart={getDepart}
       />
       {
         stateOfModal? 

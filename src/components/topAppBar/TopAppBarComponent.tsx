@@ -1,15 +1,20 @@
+import { useState } from 'react'
+
 interface TopAppBarProps{
-    getStateOfModal: any;
-    getPhrase: any;
+    getStateOfModal: Function;
+    getPhrase: Function;
+    inputValue: string;
 }
 
 const TopAppBar = (props: TopAppBarProps) => {
+    const [inpValue, setInputValue] = useState<string>(props.inputValue)
     const handleBtnClick = () => {
         props.getStateOfModal();
     }
 
     const handleSearch = (e: any) => {
         const phrase: string = e.target.value;
+        setInputValue(phrase);
         props.getPhrase(phrase);
     }
 
@@ -18,9 +23,9 @@ const TopAppBar = (props: TopAppBarProps) => {
             <h1>Поиск</h1>
             <div className="input-block">                
                 <input 
-                    type="text" 
+                    type="text"
                     placeholder="Введи имя, тег, почту..."
-                    className="search-inp"
+                    className="search-inp" value={inpValue}
                     onInput={handleSearch}
                 />
                 <button className="filtration-btn" onClick={handleBtnClick}></button>

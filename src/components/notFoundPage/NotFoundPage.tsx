@@ -1,7 +1,9 @@
 import styles from './NotFound.module.scss';
 import { NavLink } from 'react-router-dom';
 
-const NotFoundPage = (props: any) => {
+interface NotFoundPagePropsTypes{}
+
+const NotFoundPage = (props: NotFoundPagePropsTypes) => {
     return (
         <div className={styles.page}>
             <div></div>

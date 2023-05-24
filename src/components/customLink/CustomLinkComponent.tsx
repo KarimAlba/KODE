@@ -8,12 +8,13 @@ interface CutomLinkPropsTypes{
     children: string;
     filterByDepartament: any;
     departament: string;
-    isActive?: boolean;
-    changeActive?: any;
+    getDepart:Function;
+    isActive: string;
+    changeActive: Function;
 }
 
 const CustomLink = (props: CutomLinkPropsTypes) => {
-    const { children, to, departament, isActive, changeActive } = props;
+    const { children, to, departament, isActive, changeActive, getDepart } = props;
 
     const sortArray = (x: IWorker, y: IWorker) =>{
         if (x.firstName < y.firstName) {return -1;}
@@ -32,15 +33,14 @@ const CustomLink = (props: CutomLinkPropsTypes) => {
 
     const handleClick = () => {
         sendReq();
-        if (isActive) {
-            return
-        } changeActive();
+        getDepart(departament);
+        changeActive(departament);
     }
 
     return(
         <Link 
             to={to} onClick={handleClick}
-            className={isActive? 'active': 'inactive'}
+            className={isActive == departament? 'active': 'inactive' }
         >
             {children}
         </Link>
