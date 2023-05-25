@@ -81,21 +81,12 @@ const App = () =>{
   const getPhrase = (phrase: string) => {
     prepareArray(phrase);
   };
-  
-  const [inputValue, setInputValue] = useState<string>('');
-
-  useEffect(() => {
-    if(inputValue) {
-      setInputValue('');
-    } return
-  }, 
-  [departForRender]);
 
   return (
     <div className="App">
       <TopAppBar 
         getStateOfModal={getStateOfModal} 
-        getPhrase={getPhrase} inputValue={inputValue}
+        getPhrase={getPhrase} departament={departForRender}
       />
       <NavBar 
         workers={workers} filterByDepartament={filterByDepartament}
