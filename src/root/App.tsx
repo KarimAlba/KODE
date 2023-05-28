@@ -9,6 +9,7 @@ import Preloader from '../components/preloader/PreloaderComponent';
 import { Routes, Route } from 'react-router-dom';
 import Modal from '../components/modalWindow/ModalWindowComponent';
 import IWorker from '../models/IWorker';
+import WorkerPage from '../components/workerPageComponent/WorkerPageComponent';
 
 const App = () =>{
   const [stateOfPreloader, setStateOfPreloader] = useState<boolean>(true);
@@ -56,7 +57,8 @@ const App = () =>{
 
   const routes =
     <Routes>
-      <Route path='/' element={<MainPage workers={workers}/>} />
+      <Route path='/' element={<MainPage workers={workers}/>}/>   
+      <Route path='/:id' element={<WorkerPage/>}/>
       <Route path='*' element={<NotFoundPage/>} />
     </Routes>
 

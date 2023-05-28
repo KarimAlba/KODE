@@ -1,0 +1,38 @@
+.worker{
+    margin: 10px;
+    width: 25%;
+    height: 90px;
+    display: flex;
+    justify-content: space-around;
+
+    img{
+        margin: auto 0;
+        width: 70px;
+        height: 70px;
+        border-radius: 40px;
+    }
+
+    .worker_container{
+        width: 70%;
+
+        .worker_header{
+            display: flex;
+            justify-content: start;
+
+            a{  
+                margin-top:20px;
+                line-height: 20px;
+            }
+        }
+
+        p{  
+            font-size: 13px;
+            color: rgb(69, 69, 72);
+        }
+
+        .worker_tag{
+            margin: 22px 0 0 5px;
+            color: rgb(169, 168, 172);
+        }
+    }
+}
