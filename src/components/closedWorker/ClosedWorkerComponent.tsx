@@ -12,23 +12,23 @@ const ClosedWorker = (props: ClosedWorkerPropsTypes) => {
     const { worker } = props;
 
     return (
-        <div className={styles['worker']}>
-            <img 
-                src={Math.random() > 0.5? Bezos : Durov} 
-                alt="face of worker" 
-            />
-            <div className={styles['worker_container']}>
-                <div className={styles['worker_header']}>
-                    <Link to={`/${worker.id}`}>
-                        {worker.firstName + ' ' + worker.lastName}
-                    </Link>
-                    <p className={styles['worker_tag']}>
-                        {worker.userTag}
-                    </p>
+            <div className={styles['worker']}>
+                <img 
+                    src={Math.random() > 0.5? Bezos : Durov} 
+                    alt="face of worker" 
+                />
+                <div className={styles['worker_container']}>
+                    <div className={styles['worker_header']}>
+                        <Link to={`/${worker.id}`}>
+                            {worker.firstName + ' ' + worker.lastName}
+                        </Link>
+                        <p className={styles['worker_tag']}>
+                            {worker.userTag}
+                        </p>
+                    </div>
+                    <p>{worker.position}</p>
                 </div>
-                <p>{worker.position}</p>
             </div>
-        </div>
     )  
 }
 

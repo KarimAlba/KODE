@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
 import axios from 'axios';
 import TopAppBar from '../components/topAppBar/TopAppBarComponent';
@@ -10,6 +10,7 @@ import { Routes, Route } from 'react-router-dom';
 import Modal from '../components/modalWindow/ModalWindowComponent';
 import IWorker from '../models/IWorker';
 import WorkerPage from '../components/workerPageComponent/WorkerPageComponent';
+import WorkersContext from '../context/WorkersContext';
 
 const App = () =>{
   const [stateOfPreloader, setStateOfPreloader] = useState<boolean>(true);
@@ -57,7 +58,7 @@ const App = () =>{
 
   const routes =
     <Routes>
-      <Route path='/' element={<MainPage workers={workers}/>}/>   
+      <Route path='/' element={<MainPage workers={workers}/>}/>  
       <Route path='/:id' element={<WorkerPage/>}/>
       <Route path='*' element={<NotFoundPage/>} />
     </Routes>
@@ -85,25 +86,27 @@ const App = () =>{
   };
 
   return (
-    <div className="App">
-      <TopAppBar 
-        getStateOfModal={getStateOfModal} 
-        getPhrase={getPhrase} departament={departForRender}
-      />
-      <NavBar 
-        workers={workers} filterByDepartament={filterByDepartament}
-        getDepart={getDepart}
-      />
-      {
-        stateOfModal? 
-          <Modal 
-            getStateOfModal={getStateOfModal} getStateOfSorting={getStateOfSorting} 
-            birthdaySorting={birthdaySorting}
-          />: 
-          null
-      }
-      {stateOfPreloader? <Preloader /> : routes}
-    </div>
+    <WorkersContext.Provider value={workers}>
+      <div className="App">
+        <TopAppBar 
+          getStateOfModal={getStateOfModal} 
+          getPhrase={getPhrase} departament={departForRender}
+        />
+        <NavBar 
+          workers={workers} filterByDepartament={filterByDepartament}
+          getDepart={getDepart}
+        />
+        {
+          stateOfModal? 
+            <Modal 
+              getStateOfModal={getStateOfModal} getStateOfSorting={getStateOfSorting} 
+              birthdaySorting={birthdaySorting}
+            />: 
+            null
+        }
+        {stateOfPreloader? <Preloader /> : routes}
+      </div>
+    </WorkersContext.Provider>
   );
 }
 
