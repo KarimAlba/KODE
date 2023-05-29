@@ -19,6 +19,7 @@ button{
     display: flex;
     flex-flow: column;
     box-sizing: border-box;
+    z-index: 1;
 
     h1{
         font-weight: 700;

@@ -11,6 +11,7 @@ import Modal from '../components/modalWindow/ModalWindowComponent';
 import IWorker from '../models/IWorker';
 import WorkerPage from '../components/workerPageComponent/WorkerPageComponent';
 import WorkersContext from '../context/WorkersContext';
+import LostConectionPage from '../components/lostConectionPage/LostConectionPageComponent';
 
 const App = () =>{
   const [stateOfPreloader, setStateOfPreloader] = useState<boolean>(true);
@@ -55,6 +56,20 @@ const App = () =>{
         (a: IWorker, b: IWorker) => Number(new Date(b.birthday)) - Number(new Date(a.birthday))
       ))
   }
+  const [isConection, setIsConection] = useState<boolean>(true);
+
+  const testingConnection = () => {
+    setInterval(() => {
+      axios.get('https://jsonplaceholder.typicode.com/todos/1')
+        .then(resp => setIsConection(true))
+        .catch(error => setIsConection(false))
+    }, 3000);
+  }
+
+  useEffect(() => {
+    testingConnection();
+  }, [workers]);
+
 
   const routes =
     <Routes>
@@ -88,6 +103,7 @@ const App = () =>{
   return (
     <WorkersContext.Provider value={workers}>
       <div className="App">
+        {isConection? null : <LostConectionPage/>}
         <TopAppBar 
           getStateOfModal={getStateOfModal} 
           getPhrase={getPhrase} departament={departForRender}
